@@ -1,5 +1,77 @@
-let keyTest = "qwertyuiopasdfghjkl;zxcvbnm,./";
-let arrKeyTest = keyTest.split("");
+let arrKeyTest = [
+  {
+    key: "Digit1",
+    x: "1",
+    y1: "+",
+    y2: "ๅ",
+  },
+  {
+    key: "Digit2",
+    x: "2",
+    y1: "๑",
+    y2: "/",
+  },
+  {
+    key: "Digit3",
+    x: "3",
+    y1: "๒",
+    y2: "/",
+  },
+  {
+    key: "Digit4",
+    x: "4",
+    y1: "๓",
+    y2: "ภ",
+  },
+  {
+    key: "Digit5",
+    x: "5",
+    y1: "๔",
+    y2: "ถ",
+  },
+  {
+    key: "Digit6",
+    x: "6",
+    y1: "ู",
+    y2: "ุ",
+  },
+  {
+    key: "Digit7",
+    x: "7",
+    y1: "฿",
+    y2: "ึ",
+  },
+  {
+    key: "Digit8",
+    x: "8",
+    y1: "๕",
+    y2: "ค",
+  },
+  {
+    key: "Digit9",
+    x: "9",
+    y1: "๖",
+    y2: "ต",
+  },
+  {
+    key: "Digit0",
+    x: "0",
+    y1: "๗",
+    y2: "จ",
+  },
+  {
+    key: "Minus",
+    x: "-",
+    y1: "๘",
+    y2: "ข",
+  },
+  {
+    key: "Equal",
+    x: "=",
+    y1: "๙",
+    y2: "ช",
+  },
+];
 var myWordTest = document.getElementById("word-test");
 var myInputTest = document.getElementById("input-test");
 
@@ -9,28 +81,48 @@ const getRandomInt = (max) => {
 
 const writeMyWordTest = (arr) => {
   myWordTest.innerHTML = "";
-  arr.forEach((arr, index) => {
-    if (index < 5) {
+  arr.forEach((item, index) => {
+    if (index < 2) {
       myWordTest.innerHTML =
         myWordTest.innerHTML +
-        `<span class="word-active" key=${index}>${arr}</span>`;
+        `
+    <div class="numpad word-active">
+      <div>${item.x}</div>
+      <div>
+        <div>${item.y1}</div>
+        <div>${item.y2}</div>
+      </div>
+    </div>
+  `;
     } else {
       myWordTest.innerHTML =
-        myWordTest.innerHTML + `<span key=${index}>${arr}</span>`;
+        myWordTest.innerHTML +
+        `
+    <div class="numpad">
+      <div>${item.x}</div>
+      <div>
+        <div>${item.y1}</div>
+        <div>${item.y2}</div>
+      </div>
+    </div>
+  `;
     }
   });
 };
 const writeMyInputTest = (arr) => {
   myInputTest.innerHTML = "";
-  arr.forEach((arr, index) => {
-    if (index === 10) {
-      myInputTest.innerHTML =
-        myInputTest.innerHTML +
-        `<span class="input-active" key=${index}>${arr}</span>`;
-    } else {
-      myInputTest.innerHTML =
-        myInputTest.innerHTML + `<span key=${index}>${arr}</span>`;
-    }
+  arr.forEach((item) => {
+    myInputTest.innerHTML =
+      myInputTest.innerHTML +
+      `
+    <div class="numpad">
+      <div>${item.x}</div>
+      <div>
+        <div>${item.y1}</div>
+        <div>${item.y2}</div>
+      </div>
+    </div>
+  `;
   });
 };
 
@@ -42,9 +134,90 @@ const deleteWord = (arr, newWord) => {
   newArr.push(newWord);
   return newArr;
 };
+const findWord = (key) => {
+  let keyValue = {
+    key: "",
+    x: "",
+    y1: "",
+    y2: "",
+  };
+  arrKeyTest.forEach((item) => {
+    console.log(item.key, key);
+    if (item.key === key)
+      keyValue = {
+        key: item.key,
+        x: item.x,
+        y1: item.y1,
+        y2: item.y2,
+      };
+  });
+  return keyValue;
+};
 
-let arrMyWordTest = ["a", "a", "a", "a", "a", "Z", "a", "a", "a", "a", "a"];
-let arrMyInputTest = ["a", "a", "a", "a", "a", "Z", "a", "a", "a", "a", "a"];
+let arrMyWordTest = [
+  {
+    key: "Digit1",
+    x: "1",
+    y1: "+",
+    y2: "ๅ",
+  },
+  {
+    key: "Digit2",
+    x: "2",
+    y1: "๑",
+    y2: "/",
+  },
+  {
+    key: "Digit3",
+    x: "3",
+    y1: "๒",
+    y2: "/",
+  },
+  {
+    key: "Digit4",
+    x: "4",
+    y1: "๓",
+    y2: "ภ",
+  },
+  {
+    key: "Digit5",
+    x: "5",
+    y1: "๔",
+    y2: "ถ",
+  },
+];
+let arrMyInputTest = [
+  {
+    key: "Digit1",
+    x: "1",
+    y1: "+",
+    y2: "ๅ",
+  },
+  {
+    key: "Digit2",
+    x: "2",
+    y1: "๑",
+    y2: "/",
+  },
+  {
+    key: "Digit3",
+    x: "3",
+    y1: "๒",
+    y2: "/",
+  },
+  {
+    key: "Digit4",
+    x: "4",
+    y1: "๓",
+    y2: "ภ",
+  },
+  {
+    key: "Digit5",
+    x: "5",
+    y1: "๔",
+    y2: "ถ",
+  },
+];
 
 writeMyWordTest(arrMyWordTest);
 writeMyInputTest(arrMyInputTest);
@@ -69,8 +242,7 @@ document.addEventListener(
       }, 300);
 
       //check word keydow
-      console.log(arrMyWordTest[5], event.key);
-      if (arrMyWordTest[5] === event.key) {
+      if (arrMyWordTest[2].key === event.code) {
         myInputTest.classList.remove("incorrect");
       } else {
         myInputTest.classList.add("incorrect");
@@ -78,12 +250,13 @@ document.addEventListener(
 
       //gen word test
 
-      arrMyWordTest = deleteWord(arrMyWordTest, arrKeyTest[getRandomInt(30)]);
+      arrMyWordTest = deleteWord(arrMyWordTest, arrKeyTest[getRandomInt(10)]);
       writeMyWordTest(arrMyWordTest);
 
       //show keydown
-      arrMyInputTest = deleteWord(arrMyInputTest, event.key);
+      arrMyInputTest = deleteWord(arrMyInputTest, findWord(event.code));
       writeMyInputTest(arrMyInputTest);
+      console.log(findWord(event.key));
     } else {
       alert(
         `Without Key test \nKey pressed: '${event.key}' \nKey code: '${event.code}'`
