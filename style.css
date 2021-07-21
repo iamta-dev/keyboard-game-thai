@@ -56,12 +56,20 @@ html {
   margin: 0.2rem;
   border: 1px solid black;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
 }
 .active {
   background-color: sandybrown;
+}
+.keycap-active {
+  font-weight: bold;
+  color: black;
+}
+.keycap-normal {
+  font-weight: normal;
+  color: gray;
 }
 .gen-word,
 .input-word {
